@@ -14,8 +14,9 @@ const UserForm = () => {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {
-      dispatch({ name, phone });
+      dispatch(setUser({ name, phone }));
       setLoading(false);
+      navigate("/menu");
     }, 2000);
   };
   return (
