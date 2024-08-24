@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-const MenuPage = () => {
+const MenuPage = ({ onAddToCart }) => {
   const obj = {
     1: "Delicious Choices Await!",
     2: "Feast Your Eyes on Our Menu",
@@ -10,8 +10,16 @@ const MenuPage = () => {
     6: "From Our Kitchen to Your Doorstep",
   };
   const keys = Object.keys(obj);
-  const randomIndex = Math.floor(Math.random() * keys.length);
-  const heading = obj[keys[randomIndex]];
+  const [heading, setHeading] = useState(obj[keys[0]]);
+  const updateHeading = () => {
+    const randomIndex = Math.floor(Math.random() * keys.length);
+    setHeading(obj[keys[randomIndex]]);
+  };
+  useEffect(() => {
+    const change = setInterval(() => {
+      updateHeading();
+    }, 10000);
+  });
   // useEffect(() => {
   //   const fetchRecipies = async () => {
   //     try {
@@ -32,12 +40,13 @@ const MenuPage = () => {
   //   fetchRecipies();
   // }, []);
   const handleSubmit = (e) => {
+    onAddToCart();
     console.log("Added to cart");
   };
   return (
     <div className="">
       <div>
-        <h2 className="text-3xl mt-7 text-bolder mx-2 ">{heading} </h2>
+        <h2 className="text-3xl mt-7 text-bolder mx-2 ">{heading} </h2>;
       </div>
       <hr className="bg-black shadow-md mt-10 my-2 w-full font-bold h-1 " />
       <div className="container border-4 flex justify-center items-center">

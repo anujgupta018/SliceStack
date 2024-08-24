@@ -12,6 +12,8 @@ const Navbar = () => {
         setName(nameFrom);
       } else if (savedName) {
         setName(savedName);
+      } else {
+        setName("Guest");
       }
       console.log(savedName);
     };

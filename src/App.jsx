@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserForm from "./Components/User/UserForm";
 import MenuPage from "./Components/Menu/MenuPage";
 import Navbar from "./Components/Navbar/Navbar";
+import Cart from "./Cart/Cart";
 const App = () => {
+  const [visible, setVisible] = useState(false);
+  const toggleCart = () => {
+    setVisible((prev) => !prev);
+  };
   return (
     <BrowserRouter>
       <Navbar />
       <div className="">
         <Routes>
           <Route path="/" element={<UserForm />} />
-          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/menu" element={<MenuPage onAddToCart={toggleCart} />} />
         </Routes>
       </div>
+      {visible && <Cart />}
     </BrowserRouter>
   );
 };
