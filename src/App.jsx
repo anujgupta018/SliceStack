@@ -7,7 +7,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <div>
+      <div className="">
         <Routes>
           <Route path="/" element={<UserForm />} />
           <Route path="/menu" element={<MenuPage />} />

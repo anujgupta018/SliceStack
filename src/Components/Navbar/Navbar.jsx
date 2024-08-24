@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <div className="bg-purple-300 h-[70px] shadow-lg flex justify-between p-2">
       <div className="">
-        <h1 className="text-3xl lg:text-2xl font-bolder mt-2">
+        <h1 className="text-3xl lg:text-2xl font-bolder mt-2 mx-2">
           SliceStack co.
         </h1>
       </div>
