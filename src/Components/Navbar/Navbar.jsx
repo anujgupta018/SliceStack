@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { useSelector } from "react-redux";
+
 const Navbar = () => {
-  const name = useSelector((state) => state.name.name);
+  const [name, setName] = useState("");
+  const nameFrom = useSelector((state) => state.user.name);
+  useEffect(() => {
+    const updateName = () => {
+      const savedName = localStorage.getItem("username");
+      if (nameFrom) {
+        setName(nameFrom);
+      } else if (savedName) {
+        setName(savedName);
+      }
+      console.log(savedName);
+    };
+    updateName();
+    window.addEventListener("storage", updateName);
+    return () => window.removeEventListener("storage", updateName);
+  }, [nameFrom]);
   return (
     <div className="bg-purple-300 h-[70px] shadow-lg flex justify-between p-2">
       <div className="">

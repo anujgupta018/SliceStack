@@ -14,6 +14,7 @@ const UserForm = () => {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {
+      localStorage.setItem("username", name);
       dispatch(setUser({ name, phone }));
       setLoading(false);
       navigate("/menu");
