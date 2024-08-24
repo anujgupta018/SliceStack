@@ -19,7 +19,8 @@ const MenuPage = ({ onAddToCart }) => {
     const change = setInterval(() => {
       updateHeading();
     }, 10000);
-  });
+    return () => clearInterval(change);
+  }, []);
   // useEffect(() => {
   //   const fetchRecipies = async () => {
   //     try {
@@ -46,7 +47,7 @@ const MenuPage = ({ onAddToCart }) => {
   return (
     <div className="">
       <div>
-        <h2 className="text-3xl mt-7 text-bolder mx-2 ">{heading} </h2>;
+        <h2 className="text-3xl mt-7 text-bolder mx-2 ">{heading} </h2>
       </div>
       <hr className="bg-black shadow-md mt-10 my-2 w-full font-bold h-1 " />
       <div className="container border-4 flex justify-center items-center">
