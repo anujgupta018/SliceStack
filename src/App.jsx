@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserForm from "./Components/User/UserForm";
 import MenuPage from "./Components/Menu/MenuPage";
 import Navbar from "./Components/Navbar/Navbar";
-import Cart from "./Cart/Cart";
+import Cart from "./Components/Cart/Cart";
 const App = () => {
   const [visible, setVisible] = useState(false);
   const toggleCart = () => {
