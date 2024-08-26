@@ -37,12 +37,14 @@ const MenuPage = ({ onAddToCart }) => {
     const fetchRecipies = async () => {
       try {
         const apiKey = import.meta.env.VITE_APP_API_KEY;
+        // "https://world.openfoodfacts.org/cgi/search.pl?search_terms=pizza&search_simple=1&json=1&fields=product_name,image_url,price,code&sort_by=popularity"
+
         const response = await fetch(
-          `https://api.spoonacular.com/food/products/search?query=pizza&number=5&apiKey=${apiKey}`
+          `https://api.spoonacular.com/recipes/complexSearch?query=pizza&number=5&apiKey=${apiKey}&addRecipeInformation=true`
         );
         const data = await response.json();
-        console.log(data.products);
-        setFoodData(data.products);
+        setFoodData(data.results);
+        console.log(data.results);
       } catch (error) {
         console.log("Error fetching menu items", error);
       }
@@ -59,7 +61,7 @@ const MenuPage = ({ onAddToCart }) => {
         <h2 className="text-3xl mt-7 text-bolder mx-2 ">{heading} </h2>
       </div>
       <hr className="bg-black shadow-md mt-10 my-2 w-full font-bold h-1 " />
-      <div className="container border-4 flex justify-center items-center">
+      <div className="container border-4 flex justify-center items-center  flex-col">
         {foodData.map((pizza) => {
           const itemInCart = items.find((item) => item.id === pizza.id);
           return (
@@ -74,14 +76,14 @@ const MenuPage = ({ onAddToCart }) => {
               <div className="mx-3">
                 <h2 className="text-lg font-semibold">{pizza.title}</h2>
                 <span className="text-md italic text-gray-700">
-                  {pizza.description
-                    ? pizza.description.slice(0, 60) + "..."
+                  {pizza.summary
+                    ? pizza.summary.slice(0, 50) + "..."
                     : "No description available."}
                 </span>
                 <br />
                 <div className="flex justify-between mt-1">
                   <span className="text-lg font-sans">
-                    ${pizza.price ? pizza.price : "N/A"}
+                    ₹{Math.floor(pizza.pricePerServing)}
                   </span>
                   {itemInCart ? (
                     <div className="flex gap-6 items-center">
@@ -106,7 +108,7 @@ const MenuPage = ({ onAddToCart }) => {
               </div>
             </div>
           );
-        })}
+        })}{" "}
       </div>
     </div>
   );
