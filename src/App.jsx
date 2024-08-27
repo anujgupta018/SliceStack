@@ -1,25 +1,28 @@
 import React, { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useLocation, Route, Routes } from "react-router-dom";
 import UserForm from "./Components/User/UserForm";
 import MenuPage from "./Components/Menu/MenuPage";
 import Navbar from "./Components/Navbar/Navbar";
 import Cart from "./Components/Cart/Cart";
 import { useSelector } from "react-redux";
+import CartSection from "./Components/Cart/CartSection";
 
 const App = () => {
   const items = useSelector((state) => state.cart.items);
-
+  const location = useLocation();
+  const isCartPage = location.pathname === "/cart";
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
-      <div className="">
-        <Routes>
-          <Route path="/" element={<UserForm />} />
-          <Route path="/menu" element={<MenuPage />} />
-        </Routes>
-      </div>
-      {items.length > 0 && <Cart />}
-    </BrowserRouter>
+
+      <Routes>
+        <Route path="/" element={<UserForm />} />
+        <Route path="/menu" element={<MenuPage />} />
+        <Route path="/cart" element={<CartSection />} />
+      </Routes>
+
+      {items.length > 0 && !isCartPage && <Cart />}
+    </>
   );
 };
 

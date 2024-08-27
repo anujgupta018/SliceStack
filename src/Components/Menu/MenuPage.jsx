@@ -55,7 +55,7 @@ const MenuPage = () => {
     dispatch(
       addToCart({
         id: pizza.id,
-        name: pizza.name,
+        name: pizza.title,
         price: Math.floor(pizza.pricePerServing),
       })
     );
@@ -95,7 +95,7 @@ const MenuPage = () => {
                 <h2 className="text-lg font-semibold">{pizza.title}</h2>
                 <span className="text-md italic text-gray-700">
                   {pizza.summary
-                    ? pizza.summary.slice(0, 50) + "..."
+                    ? pizza.summary.slice(0, 60) + "..."
                     : "No description available."}
                 </span>
                 <br />
