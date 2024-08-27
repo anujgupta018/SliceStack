@@ -15,7 +15,7 @@ const Cart = () => {
         {cartItems.map((item) => (
           <div key={item.id} className="flex items-center space-x-2">
             <span className="text-sm">{item.qty},&nbsp;</span>
-            <span className="text-sm">{item.name}</span>
+            <span className="text-sm">{item.name.slice(0, 15)}...</span>
           </div>
         ))}
       </div>

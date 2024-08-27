@@ -76,7 +76,7 @@ const MenuPage = () => {
         <h2 className="text-3xl mt-7 text-bolder mx-2 ">{heading} </h2>
       </div>
       <hr className="bg-black shadow-md mt-10 my-2 w-full font-bold h-1 " />
-      <div className="container border-4 flex justify-center items-center flex-col">
+      <div className="container flex justify-center items-center flex-col">
         {foodData.map((pizza) => {
           const itemInCart = items.find((item) => item.id === pizza.id);
           return (
