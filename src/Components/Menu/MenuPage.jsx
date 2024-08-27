@@ -9,7 +9,7 @@ import {
   decrementQty,
   clearCart,
 } from "../../redux/Slices/CartSlice";
-const MenuPage = ({ onAddToCart }) => {
+const MenuPage = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
   const obj = {
@@ -59,7 +59,6 @@ const MenuPage = ({ onAddToCart }) => {
         price: Math.floor(pizza.pricePerServing),
       })
     );
-    onAddToCart();
     console.log("Added to cart");
   };
   const handleIncrement = (id) => {
@@ -69,7 +68,7 @@ const MenuPage = ({ onAddToCart }) => {
     dispatch(decrementQty({ id }));
   };
   const handleDelete = (id) => {
-    dispatch(clearCart());
+    dispatch(clearCart({ id }));
   };
   return (
     <div className="">

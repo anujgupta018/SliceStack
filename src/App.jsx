@@ -7,21 +7,18 @@ import Cart from "./Components/Cart/Cart";
 import { useSelector } from "react-redux";
 
 const App = () => {
-  const [visible, setVisible] = useState(false);
   const items = useSelector((state) => state.cart.items);
-  const toggleCart = () => {
-    setVisible((prev) => !prev);
-  };
+
   return (
     <BrowserRouter>
       <Navbar />
       <div className="">
         <Routes>
           <Route path="/" element={<UserForm />} />
-          <Route path="/menu" element={<MenuPage onAddToCart={toggleCart} />} />
+          <Route path="/menu" element={<MenuPage />} />
         </Routes>
       </div>
-      {visible && <Cart />}
+      {items.length > 0 && <Cart />}
     </BrowserRouter>
   );
 };
