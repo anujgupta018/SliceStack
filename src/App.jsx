@@ -4,8 +4,11 @@ import UserForm from "./Components/User/UserForm";
 import MenuPage from "./Components/Menu/MenuPage";
 import Navbar from "./Components/Navbar/Navbar";
 import Cart from "./Components/Cart/Cart";
+import { useSelector } from "react-redux";
+
 const App = () => {
   const [visible, setVisible] = useState(false);
+  const items = useSelector((state) => state.cart.items);
   const toggleCart = () => {
     setVisible((prev) => !prev);
   };

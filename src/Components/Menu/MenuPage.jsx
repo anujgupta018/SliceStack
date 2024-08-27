@@ -51,9 +51,25 @@ const MenuPage = ({ onAddToCart }) => {
     };
     fetchRecipies();
   }, []);
-  const handleSubmit = (e) => {
+  const handleSubmit = (pizza) => {
+    dispatch(
+      addToCart({
+        id: pizza.id,
+        name: pizza.name,
+        price: Math.floor(pizza.pricePerServing),
+      })
+    );
     onAddToCart();
     console.log("Added to cart");
+  };
+  const handleIncrement = (id) => {
+    dispatch(incrementQty({ id }));
+  };
+  const handleDecrement = (id) => {
+    dispatch(decrementQty({ id }));
+  };
+  const handleDelete = (id) => {
+    dispatch(clearCart());
   };
   return (
     <div className="">
@@ -61,11 +77,14 @@ const MenuPage = ({ onAddToCart }) => {
         <h2 className="text-3xl mt-7 text-bolder mx-2 ">{heading} </h2>
       </div>
       <hr className="bg-black shadow-md mt-10 my-2 w-full font-bold h-1 " />
-      <div className="container border-4 flex justify-center items-center  flex-col">
+      <div className="container border-4 flex justify-center items-center flex-col">
         {foodData.map((pizza) => {
           const itemInCart = items.find((item) => item.id === pizza.id);
           return (
-            <div key={pizza.id} className="m-4">
+            <div
+              key={pizza.id}
+              className="flex mt-2 container items-center justify-center my-2 border-2 w-[500px] p-3"
+            >
               <div>
                 <img
                   src={pizza.image}
@@ -88,12 +107,21 @@ const MenuPage = ({ onAddToCart }) => {
                   {itemInCart ? (
                     <div className="flex gap-6 items-center">
                       <div className="mt-1 flex gap-4 text-xl my-1 items-center">
-                        <CiCirclePlus className="text-xl lg:text-2xl rounded-lg hover:bg-yellow-400 cursor-pointer" />
-                        <span className="text-lg">{itemInCart.quantity}</span>
-                        <CiCircleMinus className="text-xl lg:text-2xl rounded-lg hover:bg-red-400 cursor-pointer" />
+                        <CiCirclePlus
+                          onClick={() => handleIncrement(pizza.id)}
+                          className="text-xl lg:text-2xl rounded-lg hover:bg-yellow-400 cursor-pointer"
+                        />
+                        <span className="text-lg">{itemInCart.qty}</span>
+                        <CiCircleMinus
+                          onClick={() => handleDecrement(pizza.id)}
+                          className="text-xl lg:text-2xl rounded-lg hover:bg-red-400 cursor-pointer"
+                        />
                       </div>
                       <div>
-                        <MdOutlineDeleteOutline className="text-xl hover:bg-red-600 cursor-pointer" />
+                        <MdOutlineDeleteOutline
+                          onClick={() => handleDelete(pizza.id)}
+                          className="text-xl hover:bg-red-600 cursor-pointer"
+                        />
                       </div>
                     </div>
                   ) : (
