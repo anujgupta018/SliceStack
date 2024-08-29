@@ -80,10 +80,16 @@ const CartSection = () => {
                   </div>
                 ))}
                 <div className="flex gap-4 justify-center items-center mt-4">
-                  <button className="bg-purple-300 p-2" onClick={handleOrder}>
+                  <button
+                    className="bg-purple-300 p-2 hover:bg-purple-400 transition-all ease-in-out duration-300"
+                    onClick={handleOrder}
+                  >
                     Order Now
                   </button>
-                  <button className="bg-yellow-200 p-2" onClick={clearCart}>
+                  <button
+                    className="bg-yellow-200 p-2 hover:bg-yellow-500 transition-all ease-in-out duration-300"
+                    onClick={clearCart}
+                  >
                     Clear Cart
                   </button>
                 </div>

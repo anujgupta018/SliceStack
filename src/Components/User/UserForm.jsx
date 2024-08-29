@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../redux/Slices/UserSlice";
+import { setUser, setNumber } from "../../redux/Slices/UserSlice";
 import { ScaleLoader } from "react-spinners";
 const UserForm = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,8 @@ const UserForm = () => {
     setLoading(true);
     setTimeout(() => {
       localStorage.setItem("username", name);
-      dispatch(setUser({ name, phone }));
+      dispatch(setUser({ name }));
+      dispatch(setNumber({ phone }));
       setLoading(false);
       navigate("/menu");
     }, 2000);
@@ -24,7 +25,7 @@ const UserForm = () => {
     <div className="bg-purple-100 flex justify-center items-center min-h-screen">
       {loading ? (
         <div className="flex justify-center items-center">
-          <ScaleLoader color="#ffffff" width={7} height={50} />
+          <ScaleLoader color="#000000" width={7} height={50} />
         </div>
       ) : (
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">

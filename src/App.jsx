@@ -12,6 +12,7 @@ const App = () => {
   const items = useSelector((state) => state.cart.items);
   const location = useLocation();
   const isCartPage = location.pathname === "/cart";
+  const isCheckout = location.pathname === "/checkout";
   return (
     <>
       <Navbar />
@@ -22,7 +23,7 @@ const App = () => {
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
 
-      {items.length > 0 && !isCartPage && <Cart />}
+      {items.length > 0 && !isCartPage && !isCheckout && <Cart />}
     </>
   );
 };
