@@ -7,12 +7,14 @@ import Cart from "./Components/Cart/Cart";
 import { useSelector } from "react-redux";
 import CartSection from "./Components/Cart/CartSection";
 import Checkout from "./Components/Checkout/Checkout";
+import Receipt from "./Components/Receipt/Receipt";
 
 const App = () => {
   const items = useSelector((state) => state.cart.items);
   const location = useLocation();
   const isCartPage = location.pathname === "/cart";
   const isCheckout = location.pathname === "/checkout";
+  const isReceipt = location.pathname === "/receipt";
   return (
     <>
       <Navbar />
@@ -21,9 +23,10 @@ const App = () => {
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/cart" element={<CartSection />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/receipt" element={<Receipt />} />
       </Routes>
 
-      {items.length > 0 && !isCartPage && !isCheckout && <Cart />}
+      {items.length > 0 && !isCartPage && !isCheckout && !isReceipt && <Cart />}
     </>
   );
 };
