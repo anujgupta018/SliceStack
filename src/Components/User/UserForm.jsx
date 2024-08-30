@@ -7,11 +7,17 @@ const UserForm = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const phonePattern = /^[0-9]{10,}$/;
+    if (!phonePattern.test(phone)) {
+      setError("Please enter a valid phone number with at least 10 digits.");
+      return;
+    }
     setLoading(true);
     setTimeout(() => {
       localStorage.setItem("username", name);
@@ -59,6 +65,7 @@ const UserForm = () => {
                 className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
             </div>
+            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
             {name && phone && (
               <button
                 className="bg-purple-700 text-white p-3 rounded-lg hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-500"

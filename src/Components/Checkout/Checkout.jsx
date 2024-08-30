@@ -8,14 +8,23 @@ const Checkout = () => {
   const [name, setName] = useState(initialName);
   const [phone, setPhone] = useState(intialPhone);
   const [add, setAdd] = useState("");
+  const [error, setError] = useState("");
 
   const handleName = (e) => {
     setName(e.target.value);
     dispatch(setUser({ name: e.target.value }));
   };
   const handlePhone = (e) => {
-    setPhone(e.target.value);
-    dispatch(setNumber({ phone: e.target.value }));
+    const phoneValue = e.target.value;
+    setPhone(phoneValue);
+
+    const phonePattern = /^[0-9]{10,}$/;
+    if (!phonePattern.test(phoneValue)) {
+      setError("Please enter a valid phone number with at least 10 digits.");
+    } else {
+      setError("");
+      dispatch(setNumber({ phone: phoneValue }));
+    }
   };
   const handleAddress = (e) => {
     setAdd(e.target.value);
@@ -59,6 +68,7 @@ const Checkout = () => {
               className="w-full p-3 border border-purple-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
+          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
           <div className="flex items-center gap-4">
             <label
               htmlFor="address"
