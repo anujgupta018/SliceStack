@@ -53,7 +53,10 @@ const Checkout = () => {
           <ScaleLoader color="#000000" width={7} height={50} />
         </div>
       ) : (
-        <div className="flex items-center justify-center flex-col mt-10 gap-8">
+        <div
+          data-aos="zoom-in"
+          className="flex items-center justify-center flex-col mt-10 gap-8"
+        >
           <h2 className="texl-xl sm:text-2xl font-semibold text-center">
             Review Your Order
           </h2>
