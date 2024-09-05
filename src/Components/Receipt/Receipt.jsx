@@ -4,6 +4,10 @@ const Receipt = () => {
   const date = new Date();
   const fdate = date.toLocaleString();
   const cartItems = useSelector((state) => state.cart.items);
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.qty * item.price,
+    0
+  );
   return (
     <div>
       <div className="flex justify-between mt-10">
@@ -26,8 +30,13 @@ const Receipt = () => {
           </div>
         ))}
       </div>
-      <div className="bg-gray-400 ">
-        <h3>To pay on delivery</h3>
+      <div className="bg-gray-400 ml-5 mr-5 h-[120px] rounded-lg shadow-lg flex items-center justify-between p-6">
+        <div className="flex flex-col">
+          <h3 className="text-lg font-semibold">Pizza Price: ₹{totalPrice}</h3>
+          <h3 className="text-lg font-semibold">
+            To pay on delivery: ₹{totalPrice}
+          </h3>
+        </div>
       </div>
     </div>
   );

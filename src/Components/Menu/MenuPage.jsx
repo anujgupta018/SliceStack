@@ -40,7 +40,7 @@ const MenuPage = () => {
         // "https://world.openfoodfacts.org/cgi/search.pl?search_terms=pizza&search_simple=1&json=1&fields=product_name,image_url,price,code&sort_by=popularity"
 
         const response = await fetch(
-          `https://api.spoonacular.com/recipes/complexSearch?query=pizza&number=5&apiKey=${apiKey}&addRecipeInformation=true`
+          `https://api.spoonacular.com/recipes/complexSearch?query=pizza&number=20&apiKey=${apiKey}&addRecipeInformation=true`
         );
         const data = await response.json();
         setFoodData(data.results);

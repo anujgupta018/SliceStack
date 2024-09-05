@@ -10,11 +10,7 @@ const Cart = () => {
   };
   const cartItems = useSelector((state) => state.cart.items);
   return (
-    <div
-      data-aos="zoom-in-up"
-      data-aos-delay="100"
-      className="fixed bottom-0 left-0 bg-purple-300 flex flex-row justify-between items-center w-full h-[50px] transition-transform ease-in-out duration-200"
-    >
+    <div className="fixed bottom-0 left-0 bg-purple-300 flex flex-row justify-between items-center w-full h-[50px] transition-transform ease-in-out duration-200">
       <div className="flex overflow-x-auto mx-2 space-x-4">
         {cartItems.map((item) => (
           <div key={item.id} className="flex items-center space-x-2">

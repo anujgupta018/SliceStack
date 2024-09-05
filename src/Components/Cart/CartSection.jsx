@@ -84,7 +84,7 @@ const CartSection = () => {
                     className="bg-purple-300 p-2 hover:bg-purple-400 transition-all ease-in-out duration-300"
                     onClick={handleOrder}
                   >
-                    Order Now
+                    Next
                   </button>
                   <button
                     className="bg-yellow-200 p-2 hover:bg-yellow-500 transition-all ease-in-out duration-300"
